@@ -35,10 +35,8 @@ public class SwaggerConfig {
         return new OpenAPI().info(new Info().title("Application API")
                         .version(appVersion)
                         .description(appDescription)
-                        .license(new License().name("Apache 2.0")
-                                .url("http://springdoc.org"))
-                        .contact(new Contact().name("bna")
-                                .email("n_bryklia@bk.ru")))
+                        .license(new License().name("Apache 2.0").url("http://springdoc.org"))
+                        .contact(new Contact().name("bna").email("n_bryklia@bk.ru")))
                 .addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
                 .components(
                         new Components()
