@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.profit.avia.dto.FlightDTO;
+import org.profit.avia.dto.UploadFlightDTO;
 import org.profit.avia.model.Flight;
 import org.profit.avia.response.DataResponse;
 import org.profit.avia.service.BaseService;
@@ -110,6 +111,14 @@ public class FlightController {
     @RequestMapping(value = "flight/delete", method = RequestMethod.POST)
     public String delete(@RequestBody int[] ids){
         flightService.delete(ids);
+        return BaseService.STANDARD_SUCCESS;
+    }
+
+    @Operation(summary = "Загрузка записей интеграции \"Рейс\"",
+            description = "Загрузка записей интеграции \"Рейс\".")
+    @RequestMapping(value = "flight/upload", method = RequestMethod.POST)
+    public String upload(@RequestBody UploadFlightDTO uploadFlightDTO){
+        flightService.insertFlight(uploadFlightDTO);
         return BaseService.STANDARD_SUCCESS;
     }
 }

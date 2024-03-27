@@ -1,6 +1,10 @@
 package org.profit.avia.service;
 
+import org.profit.avia.dto.UploadFlightDTO;
+import org.profit.avia.model.Company;
 import org.profit.avia.model.Flight;
+import org.profit.avia.repository.AirportRepository;
+import org.profit.avia.repository.CompanyRepository;
 import org.profit.avia.repository.FlightRepository;
 import org.profit.avia.utils.GridDataOption;
 import org.profit.avia.utils.Query;
@@ -14,12 +18,17 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class FlightService extends BaseService<Flight>{
 
     @Autowired
     private FlightRepository flightRepository;
+    @Autowired
+    private CompanyRepository companyRepository;
+    @Autowired
+    private AirportRepository airportRepository;
 
     @Autowired
     private FlightValidator flightValidator;
@@ -101,5 +110,26 @@ public class FlightService extends BaseService<Flight>{
                 .setOrderBy(gridDataOption.getOrderBy())
                 .build()
                 .count();
+    }
+
+    public void insertFlight(UploadFlightDTO uploadFlightDTO){
+        List<Company> companies = companyRepository.findWhere("company_name = :company_name",
+                "company_name", uploadFlightDTO.getAirlineIAtaCode());
+        Integer companyId;
+        if(companies.isEmpty()){
+            companyRepository.insert(new Company(null, uploadFlightDTO.getAirlineIAtaCode(), UUID.randomUUID().toString()));
+            companyId = companyRepository.findWhere("company_name = :company_name",
+                    "company_name", uploadFlightDTO.getAirlineIAtaCode()).get(0).getCompanyId();
+        }else{
+            companyId = companies.get(0).getCompanyId();
+        }
+        Integer airportDepartureId = airportRepository.findWhere("airport_code = :airport_code",
+                "airport_code", uploadFlightDTO.getDepartureAirport()).get(0).getAirportId();
+        Integer airportArrivalId = airportRepository.findWhere("airport_code = :airport_code",
+                "airport_code", uploadFlightDTO.getArrivalAirport()).get(0).getAirportId();
+        Flight flight = new Flight(null, uploadFlightDTO.getFlight(), companyId, airportDepartureId, airportArrivalId,
+                uploadFlightDTO.getPlanDeparture(), uploadFlightDTO.getPlanArrival(), uploadFlightDTO.getFactDeparture(),
+                uploadFlightDTO.getFactArrival());
+        add(flight);
     }
 }

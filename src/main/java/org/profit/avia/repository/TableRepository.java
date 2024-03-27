@@ -127,6 +127,12 @@ public interface TableRepository<T> {
         return jdbc.queryForObject(sql, Map.of("seqName", seqName), Integer.class);
     }
 
+    default List<T> findWhere(String wherePlaceholder, String param0Name, Object param0Value){
+        Map<String, Object> params = new HashMap<>();
+        params.put(param0Name, param0Value);
+        return findWhere(wherePlaceholder, params);
+    }
+
     default List<T> findWhere(String wherePlaceholder, Map<String, Object> params){
         NamedParameterJdbcTemplate jdbc = OrmUtils.getJDBC();
         String sql = "SELECT * FROM " + OrmUtils.getTableName(this.getClass()) + " WHERE " + wherePlaceholder;
