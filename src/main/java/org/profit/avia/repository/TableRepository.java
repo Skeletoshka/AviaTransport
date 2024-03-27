@@ -197,10 +197,4 @@ public interface TableRepository<T> {
         String sql = "DELETE FROM " + tableName + " WHERE " + tableName + "_id = :id";
         executeSql(sql, Map.of("id", id));
     }
-
-    abstract public void create();
-
-    abstract public void drop();
-
-    abstract public void load();
 }
