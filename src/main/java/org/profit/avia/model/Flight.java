@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.Date;
 
@@ -15,6 +16,11 @@ public class Flight {
     @Id
     @Column(name = "flight_id", nullable = false)
     private Integer flightId;
+
+    @Column(name = "flight_code", nullable = false)
+    @Size(max = 15, message = "Поле \"Код рейса\" не может иметь более {max} символов")
+    @NotNull(message = "Поле \"Код рейса\" не может быть пустым")
+    private String flightCode;
 
     @Column(name = "company_id", nullable = false)
     @NotNull(message = "Поле \"ИД компании\" не может быть пустым")
@@ -46,6 +52,7 @@ public class Flight {
     }
 
     public Flight(Integer flightId,
+                  String flightCode,
                   Integer companyId,
                   Integer airportDepartureId,
                   Integer airportArrivalId,
@@ -55,12 +62,21 @@ public class Flight {
                   Instant flightFactArrival) {
         this.flightId = flightId;
         this.companyId = companyId;
+        this.flightCode = flightCode;
         this.airportDepartureId = airportDepartureId;
         this.airportArrivalId = airportArrivalId;
         this.flightPlanDeparture = flightPlanDeparture;
         this.flightPlanArrival = flightPlanArrival;
         this.flightFactDeparture = flightFactDeparture;
         this.flightFactArrival = flightFactArrival;
+    }
+
+    public String getFlightCode() {
+        return flightCode;
+    }
+
+    public void setFlightCode(String flightCode) {
+        this.flightCode = flightCode;
     }
 
     public Integer getFlightId() {

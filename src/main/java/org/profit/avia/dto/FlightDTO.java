@@ -2,14 +2,15 @@ package org.profit.avia.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.profit.avia.model.Flight;
-
 import java.time.Instant;
-import java.util.Date;
 
 public class FlightDTO {
 
     @Schema(description = "ИД полета")
     private Integer flightId;
+
+    @Schema(description = "Код рейса")
+    private String flightCode;
 
     @Schema(description = "ИД авиакомпании")
     private Integer companyId;
@@ -57,14 +58,16 @@ public class FlightDTO {
     }
 
     public FlightDTO(Integer flightId,
-                      Integer companyId,
-                      Integer airportDepartureId,
-                      Integer airportArrivalId,
+                     String flightCode,
+                     Integer companyId,
+                     Integer airportDepartureId,
+                     Integer airportArrivalId,
                      Instant flightPlanDeparture,
                      Instant flightPlanArrival,
                      Instant flightFactDeparture,
                      Instant flightFactArrival) {
         this.flightId = flightId;
+        this.flightCode = flightCode;
         this.companyId = companyId;
         this.airportDepartureId = airportDepartureId;
         this.airportArrivalId = airportArrivalId;
@@ -87,7 +90,16 @@ public class FlightDTO {
         entity.setFlightFactDeparture(this.flightFactDeparture);
         entity.setFlightPlanArrival(this.flightPlanArrival);
         entity.setFlightPlanDeparture(this.flightPlanDeparture);
+        entity.setFlightCode(this.flightCode);
         return entity;
+    }
+
+    public String getFlightCode() {
+        return flightCode;
+    }
+
+    public void setFlightCode(String flightCode) {
+        this.flightCode = flightCode;
     }
 
     public Integer getFlightId() {

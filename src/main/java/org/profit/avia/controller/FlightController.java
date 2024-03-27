@@ -47,7 +47,7 @@ public class FlightController {
     private FlightService flightService;
 
     @Operation(summary = "Возвращает список объектов \"Рейс\"",
-            description = "Вовзращает список объектов согласно переданным фильтрам")
+            description = "Возвращает список объектов согласно переданным фильтрам")
     @RequestMapping(value = "flight/getlist", method = RequestMethod.POST)
     public DataResponse<FlightView> getList(@RequestBody GridDataOptionFlight gridDataOption){
         boolean findCompany = gridDataOption.filterExist("companyId");

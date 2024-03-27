@@ -42,7 +42,7 @@ public class CityController {
     private CityService cityService;
 
     @Operation(summary = "Возвращает список объектов \"Город\"",
-            description = "Вовзращает список объектов согласно переданным фильтрам")
+            description = "Возвращает список объектов согласно переданным фильтрам")
     @RequestMapping(value = "city/getlist", method = RequestMethod.POST)
     public DataResponse<CityView> getList(@RequestBody GridDataOptionCity gridDataOption){
         List<CityView> result = cityService.getAll(gridDataOption);

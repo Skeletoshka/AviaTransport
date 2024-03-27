@@ -43,7 +43,7 @@ public class AirportController {
     private AirportService airportService;
 
     @Operation(summary = "Возвращает список объектов \"Аэропорт\"",
-            description = "Вовзращает список объектов согласно переданным фильтрам")
+            description = "Возвращает список объектов согласно переданным фильтрам")
     @RequestMapping(value = "airport/getlist", method = RequestMethod.POST)
     public DataResponse<AirportView> getList(@RequestBody GridDataOptionAirport gridDataOption){
         boolean findCity = gridDataOption.filterExist("cityId");

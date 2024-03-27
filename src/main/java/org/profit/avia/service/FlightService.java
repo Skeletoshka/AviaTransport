@@ -6,6 +6,7 @@ import org.profit.avia.utils.GridDataOption;
 import org.profit.avia.utils.Query;
 import org.profit.avia.validator.FlightValidator;
 import org.profit.avia.view.FlightView;
+import org.profit.avia.view.StatisticView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -28,6 +29,9 @@ public class FlightService extends BaseService<Flight>{
 
     @Value("classpath:/script/flight/mainSqlForOne.sql")
     Resource mainSQLForOne;
+
+    @Value("classpath:/script/flight/statistic.sql")
+    Resource statisticSQL;
 
     @PostConstruct
     protected void init() {
@@ -78,5 +82,24 @@ public class FlightService extends BaseService<Flight>{
                 .forClass(FlightView.class, "m0")
                 .build()
                 .executeOne(id);
+    }
+
+    public List<StatisticView> getStatistic(GridDataOption gridDataOption){
+        return new Query.QueryBuilder<StatisticView>(statisticSQL)
+                .forClass(StatisticView.class, "m0")
+                .setParams(gridDataOption.buildParams())
+                .setOrderBy(gridDataOption.getOrderBy())
+                .setLimit(gridDataOption.buildPageRequest())
+                .build()
+                .execute();
+    }
+
+    public Integer getStatisticCount(GridDataOption gridDataOption){
+        return new Query.QueryBuilder<StatisticView>(statisticSQL)
+                .forClass(StatisticView.class, "m0")
+                .setParams(gridDataOption.buildParams())
+                .setOrderBy(gridDataOption.getOrderBy())
+                .build()
+                .count();
     }
 }

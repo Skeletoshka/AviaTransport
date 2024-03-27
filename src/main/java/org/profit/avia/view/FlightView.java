@@ -4,13 +4,16 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.Column;
 import java.time.Instant;
-import java.util.Date;
 
 public class FlightView {
 
     @Column(name = "flight_id")
     @Schema(description = "ИД полета")
     private Integer flightId;
+
+    @Column(name = "flight_code")
+    @Schema(description = "Код рейса")
+    private String flightCode;
 
     @Column(name = "company_id")
     @Schema(description = "ИД авиакомпании")
@@ -73,6 +76,7 @@ public class FlightView {
 
     public FlightView(Integer flightId,
                   Integer companyId,
+                  String flightCode,
                   Integer airportDepartureId,
                   Integer airportArrivalId,
                   Instant flightPlanDeparture,
@@ -81,12 +85,21 @@ public class FlightView {
                   Instant flightFactArrival) {
         this.flightId = flightId;
         this.companyId = companyId;
+        this.flightCode = flightCode;
         this.airportDepartureId = airportDepartureId;
         this.airportArrivalId = airportArrivalId;
         this.flightPlanDeparture = flightPlanDeparture;
         this.flightPlanArrival = flightPlanArrival;
         this.flightFactDeparture = flightFactDeparture;
         this.flightFactArrival = flightFactArrival;
+    }
+
+    public String getFlightCode() {
+        return flightCode;
+    }
+
+    public void setFlightCode(String flightCode) {
+        this.flightCode = flightCode;
     }
 
     public Integer getFlightId() {

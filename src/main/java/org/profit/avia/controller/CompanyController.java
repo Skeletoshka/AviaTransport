@@ -42,7 +42,7 @@ public class CompanyController {
     private CompanyService companyService;
 
     @Operation(summary = "Возвращает список объектов \"Компания\"",
-            description = "Вовзращает список объектов согласно переданным фильтрам")
+            description = "Возвращает список объектов согласно переданным фильтрам")
     @RequestMapping(value = "company/getlist", method = RequestMethod.POST)
     public DataResponse<CompanyView> getList(@RequestBody GridDataOptionCompany gridDataOption){
         List<CompanyView> result = companyService.getAll(gridDataOption);
