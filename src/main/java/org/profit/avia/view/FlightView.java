@@ -29,7 +29,7 @@ public class FlightView {
 
     @Column(name = "airport_departure_name")
     @Schema(description = "Наименование аэропорта вылета")
-    private Integer airportDepartureName;
+    private String airportDepartureName;
 
     @Column(name = "city_departure_id")
     @Schema(description = "ИД города вылета")
@@ -37,7 +37,7 @@ public class FlightView {
 
     @Column(name = "city_departure_name")
     @Schema(description = "Наименование города вылета")
-    private Integer cityDepartureName;
+    private String cityDepartureName;
 
     @Column(name = "airport_arrival_id")
     @Schema(description = "ИД аэропорта прилета")
@@ -45,7 +45,7 @@ public class FlightView {
 
     @Column(name = "airport_arrival_name")
     @Schema(description = "Наименование аэропорта прилета")
-    private Integer airportArrivalName;
+    private String airportArrivalName;
 
     @Column(name = "city_arrival_id")
     @Schema(description = "ИД города прилета")
@@ -53,7 +53,7 @@ public class FlightView {
 
     @Column(name = "city_arrival_name")
     @Schema(description = "Наименование города прилета")
-    private Integer cityArrivalName;
+    private String cityArrivalName;
 
     @Column(name = "flight_plandeparture")
     @Schema(description = "Плановая дата вылета")
@@ -174,11 +174,11 @@ public class FlightView {
         this.companyName = companyName;
     }
 
-    public Integer getAirportDepartureName() {
+    public String getAirportDepartureName() {
         return airportDepartureName;
     }
 
-    public void setAirportDepartureName(Integer airportDepartureName) {
+    public void setAirportDepartureName(String airportDepartureName) {
         this.airportDepartureName = airportDepartureName;
     }
 
@@ -190,19 +190,19 @@ public class FlightView {
         this.cityDepartureId = cityDepartureId;
     }
 
-    public Integer getCityDepartureName() {
+    public String getCityDepartureName() {
         return cityDepartureName;
     }
 
-    public void setCityDepartureName(Integer cityDepartureName) {
+    public void setCityDepartureName(String cityDepartureName) {
         this.cityDepartureName = cityDepartureName;
     }
 
-    public Integer getAirportArrivalName() {
+    public String getAirportArrivalName() {
         return airportArrivalName;
     }
 
-    public void setAirportArrivalName(Integer airportArrivalName) {
+    public void setAirportArrivalName(String airportArrivalName) {
         this.airportArrivalName = airportArrivalName;
     }
 
@@ -214,11 +214,11 @@ public class FlightView {
         this.cityArrivalId = cityArrivalId;
     }
 
-    public Integer getCityArrivalName() {
+    public String getCityArrivalName() {
         return cityArrivalName;
     }
 
-    public void setCityArrivalName(Integer cityArrivalName) {
+    public void setCityArrivalName(String cityArrivalName) {
         this.cityArrivalName = cityArrivalName;
     }
 }

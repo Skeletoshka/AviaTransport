@@ -6,7 +6,8 @@ SELECT m0.*,
        AA.airport_id AS airport_arrival_id,
        AA.airport_name AS airport_arrival_name,
        CD.city_id AS city_arrival_id,
-       CD.city_name AS city_arrival_name
+       CD.city_name AS city_arrival_name,
+       CO.company_name
 FROM   flight m0
        INNER JOIN company CO ON m0.company_id = CO.company_id
        INNER JOIN airport AD ON m0.airport_departure_id = AD.airport_id

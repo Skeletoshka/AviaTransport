@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -41,7 +42,8 @@ public class RowMapForObject implements RowMapper<Object> {
                     Method setMethod = Arrays.stream(obj.getClass().getMethods())
                             .filter(method -> method.getName().toLowerCase(Locale.ROOT).equals("set" + resultField.getName().toLowerCase(Locale.ROOT)))
                             .findFirst().orElseThrow();
-                    setMethod.invoke(obj, resultSet.getObject(j));
+                    Object obj1 = resultSet.getObject(j) instanceof Timestamp?((Timestamp)resultSet.getObject(j)).toInstant():resultSet.getObject(j);
+                    setMethod.invoke(obj, resultSet.getObject(j) instanceof Timestamp?((Timestamp)resultSet.getObject(j)).toInstant():resultSet.getObject(j));
                 }
             }
         } catch (Exception e) {

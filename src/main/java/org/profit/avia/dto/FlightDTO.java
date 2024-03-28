@@ -22,25 +22,25 @@ public class FlightDTO {
     private Integer airportDepartureId;
 
     @Schema(description = "Наименование аэропорта вылета")
-    private Integer airportDepartureName;
+    private String airportDepartureName;
 
     @Schema(description = "ИД города вылета")
     private Integer cityDepartureId;
 
     @Schema(description = "Наименование города вылета")
-    private Integer cityDepartureName;
+    private String cityDepartureName;
 
     @Schema(description = "ИД аэропорта прилета")
     private Integer airportArrivalId;
 
     @Schema(description = "Наименование аэропорта прилета")
-    private Integer airportArrivalName;
+    private String airportArrivalName;
 
     @Schema(description = "ИД города прилета")
     private Integer cityArrivalId;
 
     @Schema(description = "Наименование города прилета")
-    private Integer cityArrivalName;
+    private String cityArrivalName;
 
     @Schema(description = "Плановая дата вылета")
     private Instant flightPlanDeparture;
@@ -174,11 +174,11 @@ public class FlightDTO {
         this.companyName = companyName;
     }
 
-    public Integer getAirportDepartureName() {
+    public String getAirportDepartureName() {
         return airportDepartureName;
     }
 
-    public void setAirportDepartureName(Integer airportDepartureName) {
+    public void setAirportDepartureName(String airportDepartureName) {
         this.airportDepartureName = airportDepartureName;
     }
 
@@ -190,19 +190,19 @@ public class FlightDTO {
         this.cityDepartureId = cityDepartureId;
     }
 
-    public Integer getCityDepartureName() {
+    public String getCityDepartureName() {
         return cityDepartureName;
     }
 
-    public void setCityDepartureName(Integer cityDepartureName) {
+    public void setCityDepartureName(String cityDepartureName) {
         this.cityDepartureName = cityDepartureName;
     }
 
-    public Integer getAirportArrivalName() {
+    public String getAirportArrivalName() {
         return airportArrivalName;
     }
 
-    public void setAirportArrivalName(Integer airportArrivalName) {
+    public void setAirportArrivalName(String airportArrivalName) {
         this.airportArrivalName = airportArrivalName;
     }
 
@@ -214,11 +214,11 @@ public class FlightDTO {
         this.cityArrivalId = cityArrivalId;
     }
 
-    public Integer getCityArrivalName() {
+    public String getCityArrivalName() {
         return cityArrivalName;
     }
 
-    public void setCityArrivalName(Integer cityArrivalName) {
+    public void setCityArrivalName(String cityArrivalName) {
         this.cityArrivalName = cityArrivalName;
     }
 

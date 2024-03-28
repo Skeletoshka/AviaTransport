@@ -49,7 +49,7 @@ public class GridDataOption {
 
     public boolean filterExist(String filterName, Object filterDefaultValue){
         return namedFilters.stream().anyMatch(namedFilter -> namedFilter.name.equals(filterName)
-                && !namedFilter.getValue().equals(filterName));
+                && !namedFilter.getValue().equals(filterDefaultValue));
     }
 
     /**Метод, для внедрения в запрос LIMIT*/
