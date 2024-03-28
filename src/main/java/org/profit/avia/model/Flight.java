@@ -10,7 +10,7 @@ import java.time.Instant;
 import java.util.Date;
 
 @Entity
-@Table(name = "company")
+@Table(name = "flight")
 public class Flight {
 
     @Id
