@@ -94,20 +94,44 @@ public class FlightService extends BaseService<Flight>{
     }
 
     public List<StatisticView> getStatistic(GridDataOption gridDataOption){
+        boolean findAirportDepartureId = gridDataOption.filterExist("airportDepartureId", -1);
+        boolean findCityDepartureId = gridDataOption.filterExist("cityDepartureId", -1);
+        boolean findAirportArrivalId = gridDataOption.filterExist("airportArrivalId", -1);
+        boolean findCityArrivalId = gridDataOption.filterExist("cityArrivalId", -1);
+        boolean dateRangeDepartureFound = gridDataOption.filterExist("dateRangeDeparture", -1);
+        boolean dateRangeArrivalFound = gridDataOption.filterExist("dateRangeArrival", -1);
         return new Query.QueryBuilder<StatisticView>(statisticSQL)
                 .forClass(StatisticView.class, "m0")
                 .setParams(gridDataOption.buildParams())
                 .setOrderBy(gridDataOption.getOrderBy())
+                .injectSqlIf(findAirportDepartureId, "/*AIRPORT_DEPARTURE_PLACEHOLDER*/", "AND AD.airport_id = :airportDepartureId")
+                .injectSqlIf(findCityDepartureId, "/*CITY_DEPARTURE_PLACEHOLDER*/", "AND CD.city_id = :cityDepartureId")
+                .injectSqlIf(findAirportArrivalId, "/*AIRPORT_ARRIVAL_PLACEHOLDER*/", "AND AA.airport_id = :airportArrivalId")
+                .injectSqlIf(findCityArrivalId, "/*CITY_ARRIVAL_PLACEHOLDER*/", "AND CA.city_id = :cityArrivalId")
+                .injectSqlIf(dateRangeArrivalFound, "/*DATERANGE_ARRIVAL_PLACEHOLDER*/", "AND f.flight_planarrival BETWEEN :dateStartArrival AND :dateEndArrival")
+                .injectSqlIf(dateRangeDepartureFound, "/*DATERANGE_DEPARTURE_PLACEHOLDER*/", "AND f.flight_plandeparture BETWEEN :dateStartDeparture AND :dateEndDeparture")
                 .setLimit(gridDataOption.buildPageRequest())
                 .build()
                 .execute();
     }
 
     public Integer getStatisticCount(GridDataOption gridDataOption){
+        boolean findAirportDepartureId = gridDataOption.filterExist("airportDepartureId", -1);
+        boolean findCityDepartureId = gridDataOption.filterExist("cityDepartureId", -1);
+        boolean findAirportArrivalId = gridDataOption.filterExist("airportArrivalId", -1);
+        boolean findCityArrivalId = gridDataOption.filterExist("cityArrivalId", -1);
+        boolean dateRangeDepartureFound = gridDataOption.filterExist("dateRangeDeparture", -1);
+        boolean dateRangeArrivalFound = gridDataOption.filterExist("dateRangeArrival", -1);
         return new Query.QueryBuilder<StatisticView>(statisticSQL)
                 .forClass(StatisticView.class, "m0")
                 .setParams(gridDataOption.buildParams())
                 .setOrderBy(gridDataOption.getOrderBy())
+                .injectSqlIf(findAirportDepartureId, "/*AIRPORT_DEPARTURE_PLACEHOLDER*/", "AND AD.airport_id = :airportDepartureId")
+                .injectSqlIf(findCityDepartureId, "/*CITY_DEPARTURE_PLACEHOLDER*/", "AND CD.city_id = :cityDepartureId")
+                .injectSqlIf(findAirportArrivalId, "/*AIRPORT_ARRIVAL_PLACEHOLDER*/", "AND AA.airport_id = :airportArrivalId")
+                .injectSqlIf(findCityArrivalId, "/*CITY_ARRIVAL_PLACEHOLDER*/", "AND CA.city_id = :cityArrivalId")
+                .injectSqlIf(dateRangeArrivalFound, "/*DATERANGE_ARRIVAL_PLACEHOLDER*/", "AND f.flight_planarrival BETWEEN :dateStartArrival AND :dateEndArrival")
+                .injectSqlIf(dateRangeDepartureFound, "/*DATERANGE_DEPARTURE_PLACEHOLDER*/", "AND f.flight_plandeparture BETWEEN :dateStartDeparture AND :dateEndDeparture")
                 .build()
                 .count();
     }

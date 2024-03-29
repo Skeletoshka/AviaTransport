@@ -16,6 +16,9 @@ public class StatisticView {
     @Column(name = "rating_arrival")
     private Double ratingArrival;
 
+    @Column(name = "flight_count")
+    private Integer flightCount;
+
     public StatisticView() {
     }
 
@@ -27,6 +30,14 @@ public class StatisticView {
         this.companyName = companyName;
         this.ratingDeparture = ratingDeparture;
         this.ratingArrival = ratingArrival;
+    }
+
+    public Integer getFlightCount() {
+        return flightCount;
+    }
+
+    public void setFlightCount(Integer flightCount) {
+        this.flightCount = flightCount;
     }
 
     public Integer getCompanyId() {

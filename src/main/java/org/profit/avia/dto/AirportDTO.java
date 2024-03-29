@@ -18,7 +18,7 @@ public class AirportDTO {
     private Integer cityId;
 
     @Schema(description = "Наименование города")
-    private Integer cityName;
+    private String cityName;
 
     @Schema(description = "Широта")
     private Double airportLatitude;
@@ -119,11 +119,11 @@ public class AirportDTO {
         this.airportTimeZone = airportTimeZone;
     }
 
-    public Integer getCityName() {
+    public String getCityName() {
         return cityName;
     }
 
-    public void setCityName(Integer cityName) {
+    public void setCityName(String cityName) {
         this.cityName = cityName;
     }
 }

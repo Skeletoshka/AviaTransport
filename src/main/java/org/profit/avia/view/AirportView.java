@@ -24,7 +24,7 @@ public class AirportView {
 
     @Column(name = "city_name")
     @Schema(description = "Наименование города")
-    private Integer cityName;
+    private String cityName;
 
     @Column(name = "airport_latitude")
     @Schema(description = "Широта")
@@ -113,11 +113,11 @@ public class AirportView {
         this.airportTimeZone = airportTimeZone;
     }
 
-    public Integer getCityName() {
+    public String getCityName() {
         return cityName;
     }
 
-    public void setCityName(Integer cityName) {
+    public void setCityName(String cityName) {
         this.cityName = cityName;
     }
 }
