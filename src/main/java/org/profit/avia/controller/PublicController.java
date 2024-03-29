@@ -35,7 +35,6 @@ public class PublicController {
                     "<li> cityArrivalId - город прилета " +
                     "<li> airportDepartureId - аэропорт вылета "+
                     "<li> airportArrivalId - аэропорт прилета " +
-                    "<li> dateRange - даты полетов [long, long]"+
                 "<ul>")
         public List<NamedFilter> getNamedFilters(){
             return super.getNamedFilters();
